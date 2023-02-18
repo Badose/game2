@@ -11,6 +11,7 @@ screen = pg.display.set_mode((WIDTH, HEIGHT))
 player = Player(png/'player_sheet.png', (100, 100))
 all_sprites = pg.sprite.Group()
 all_sprites.add(player)
+test = 5
 
 running = True
 while True:
