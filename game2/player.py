@@ -41,7 +41,7 @@ class Player(pg.sprite.Sprite):
 
         w, h = sheet.w//4, sheet.h//4
         for i in range(0, w*4, w):
-            self.walk_r.append(sheet.get._image(i, 0, w, h))
-            self.walk_l.append(sheet.get._image(i, h, w, h))
-            self.walk_u.append(sheet.get._image(i, h*2, w, h))
-            self.walk_d.append(sheet.get._image(i, h*3, w, h))
+            self.walk_r.append(sheet.get_image(i, 0, w, h))
+            self.walk_l.append(sheet.get_image(i, h, w, h))
+            self.walk_u.append(sheet.get_image(i, h*2, w, h))
+            self.walk_d.append(sheet.get_image(i, h*3, w, h))

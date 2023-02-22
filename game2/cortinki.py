@@ -8,8 +8,8 @@ class Sprite_Sheet:
         w, h = sheet.get_size()
         last_size = (int(w*scale), int(h*scale))
         self.sheet = pg.transform.scale(sheet, last_size)
-        self.w, self.h = self.sheet_get.size()
+        self.w, self.h = self.sheet.get_size()
     def get_image(self, x, y, width, height):
         return self.sheet.subsurface(x, y, width, height)
 
-png = Path((sys.argv[0]).parent/'png')
+

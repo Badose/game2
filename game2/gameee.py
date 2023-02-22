@@ -1,4 +1,3 @@
-from cortinki import png
 import pygame as pg
 from settings import *
 from player import Player
@@ -8,7 +7,7 @@ clock = pg.time.Clock()
 pg.display.set_caption(TITLE)
 screen = pg.display.set_mode((WIDTH, HEIGHT))
 
-player = Player(png/'player_sheet.png', (100, 100))
+player = Player('game2/png/player_sheet.png', (100, 100))
 all_sprites = pg.sprite.Group()
 all_sprites.add(player)
 
