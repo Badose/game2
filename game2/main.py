@@ -1,6 +1,7 @@
 import pygame as pg
 from settings import *
 from player import Player
+from world import Map
 
 class Game:
     def __init__(self):
@@ -12,8 +13,10 @@ class Game:
 
     def new(self):
         player = Player('game2/png/player_sheet.png', (100, 100))
+        #self.map = Map('game2/map/the_third.csv', 'game2/map/tilemap.png')
         self.all_sprites = pg.sprite.Group()
         self.all_sprites.add(player)
+        
     
     def _events(self):
         for event in pg.event.get():

@@ -50,25 +50,26 @@ class Player(pg.sprite.Sprite):
 
         w, h = sheet.w//4, sheet.h//4
         for i in range(0, w*4, w):
-            self.walk_r.append(sheet.get_image(i, 0, w, h))
+            self.walk_d.append(sheet.get_image(i, 0, w, h))
             self.walk_l.append(sheet.get_image(i, h, w, h))
-            self.walk_u.append(sheet.get_image(i, h*2, w, h))
-            self.walk_d.append(sheet.get_image(i, h*3, w, h))
+            self.walk_r.append(sheet.get_image(i, h*2, w, h))
+            self.walk_u.append(sheet.get_image(i, h*3, w, h))
     
     def _animate(self, frame_len=100):
-        now = pg.time.get_ticks()
-        if now - self.last_update > frame_len and self.velocity.length() > 0:
-            self.last_update = now
-        if self.velocity.y < 0:
-            self.animation_cycle = self.walk_u
-        elif self.velocity.y > 0:
-            self.animation_cycle = self.walk_d
-        elif self.velocity.x > 0:
-            self.animation_cycle = self.walk_r
-        elif self.velocity.x < 0:
-            self.animation_cycle = self.walk_l
+        #now = pg.time.get_ticks()
+        #if now - self.last_update > frame_len and self.velocity.length() > 0:
+        if self.velocity.length() > 0:
+            #self.last_update = now
+            if self.velocity.y < 0:
+                self.animation_cycle = self.walk_u
+            elif self.velocity.y > 0:
+                self.animation_cycle = self.walk_d
+            elif self.velocity.x > 0:
+                self.animation_cycle = self.walk_r
+            elif self.velocity.x < 0:
+                self.animation_cycle = self.walk_l
 
-        self.frame = (self.frame + 1) % self.cycle_len
-        self.image = self.animation_cycle[self.frame]
+            self.frame = (self.frame + 1) % self.cycle_len
+            self.image = self.animation_cycle[self.frame]
 
         

@@ -3,3 +3,4 @@ WIDTH = 900
 FPS = 60
 
 TITLE = 'rpg igruha'
+TILE_SIZE = 16
