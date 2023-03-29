@@ -4,7 +4,9 @@ from player import Player
 from world import Map
 
 class Game:
+    '''Общий класс для хранения игровых функций.'''
     def __init__(self):
+        '''Создание игрового окна.'''
         pg.init()
         self.clock = pg.time.Clock()
         pg.display.set_caption(TITLE)
@@ -13,7 +15,7 @@ class Game:
 
     def new(self):
         player = Player('game2/png/player_sheet.png', (100, 100))
-        #self.map = Map('game2/map/the_third.csv', 'game2/map/tilemap.png')
+        self.map = Map(self, 'game2/map/map.csv', 'game2/map/rpg_tileset.png')
         self.all_sprites = pg.sprite.Group()
         self.all_sprites.add(player)
         
