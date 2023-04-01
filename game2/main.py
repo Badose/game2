@@ -14,26 +14,30 @@ class Game:
         self.running = True
 
     def new(self):
-        player = Player('game2/png/player_sheet.png', (100, 100))
-        self.map = Map(self, 'game2/map/map.csv', 'game2/map/rpg_tileset.png')
-        self.all_sprites = pg.sprite.Group()
-        self.all_sprites.add(player)
+        '''Добавление в главный код новых объектов, груп.'''
+        self.all_sprites = pg.sprite.LayeredUpdates()
+        self.map = Map(self, 'game2/map/map.csv', 'game2/map/rpg_tileset.png', 16)
+        player = Player(self, 'game2/png/player_sheet.png', (100, 100))
         
     
     def _events(self):
+        '''Создание игровых событий.'''
         for event in pg.event.get():
             if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
                 self.running = False
 
     def _draw(self):
+        '''Отрисовка.'''
         self.screen.fill((100, 100, 100))
         self.all_sprites.draw(self.screen)
         pg.display.flip()
 
     def _update(self):
+        '''Обновление спрайтов.'''
         self.all_sprites.update()
         
     def run(self):
+        '''Создание игрового цикла.'''
         while self.running:
             self.clock.tick(FPS)
             self._events()

@@ -1,13 +1,15 @@
 import pygame as pg
 from cortinki import Sprite_Sheet
 from pygame.math import Vector2
+from settings import *
 
 class Player(pg.sprite.Sprite):
 
     speed = 2
     
-    def __init__(self, sp_sheet_path, pos):
-        super().__init__()
+    def __init__(self, game, sp_sheet_path, pos):
+        self._layer = PLAYER_LAY
+        super().__init__(game.all_sprites)
 
         sprite_sheet = Sprite_Sheet(sp_sheet_path, 2)
         self._load_images(sprite_sheet)
