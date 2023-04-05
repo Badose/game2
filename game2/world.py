@@ -49,4 +49,18 @@ class Tile(pg.sprite.Sprite):
         self.rect.x = x * TILE_SIZE
         self.rect.y = y * TILE_SIZE
 
+class Camera:
+    def __init__(self):
+        self.offset = (0, 0)
+
+
+    def aply(self, entity):
+        return entity.rect.move(self.offset)
+    
+
+    def update(self, target):
+        x = -target.rect.x + WIDTH//2
+        y =  -target.rect.y + HEIGHT//2
+        self.offset = (x, y)
+
     
