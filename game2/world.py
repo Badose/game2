@@ -7,6 +7,8 @@ class Map:
         data_list = self._csv_to_list(csv_path)
         image_list = self._pars_image(image_path, img_tile_size, space)
         self._load_tiles(game, data_list, image_list)
+        self.width = len(data_list[0]) * TILE_SIZE 
+        self.height = len(data_list) * TILE_SIZE 
 
         
     def _csv_to_list(self, csv_path):
@@ -50,8 +52,11 @@ class Tile(pg.sprite.Sprite):
         self.rect.y = y * TILE_SIZE
 
 class Camera:
-    def __init__(self):
+    def __init__(self, map_width, map_height):
         self.offset = (0, 0)
+        self.map_width = map_width
+        self.map_height = map_height
+
 
 
     def aply(self, entity):
@@ -61,6 +66,10 @@ class Camera:
     def update(self, target):
         x = -target.rect.x + WIDTH//2
         y =  -target.rect.y + HEIGHT//2
+        x = min(x, 0) #левая граница
+        y = min(y, 0) #верхняя граница
+        x = max(x, -self.map_width + WIDTH)
+        y = max(y, -self.map_height + HEIGHT)
         self.offset = (x, y)
 
     

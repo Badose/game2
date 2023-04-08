@@ -1,7 +1,7 @@
 import pygame as pg
 from settings import *
 from player import Player
-from world import Map
+from world import Map, Camera
 
 class Game:
     '''Общий класс для хранения игровых функций.'''
@@ -17,7 +17,8 @@ class Game:
         '''Добавление в главный код новых объектов, груп.'''
         self.all_sprites = pg.sprite.LayeredUpdates()
         self.map = Map(self, 'game2/map/map.csv', 'game2/map/rpg_tileset.png', 16)
-        player = Player(self, 'game2/png/player_sheet.png', (100, 100))
+        self.camera = Camera(self.map.width, self.map.height)
+        self.player = Player(self, 'game2/png/player_sheet.png', (100, 100))
         
     
     def _events(self):
@@ -29,12 +30,14 @@ class Game:
     def _draw(self):
         '''Отрисовка.'''
         self.screen.fill((100, 100, 100))
-        self.all_sprites.draw(self.screen)
+        for sprite in self.all_sprites:
+            self.screen.blit(sprite.image, self.camera.aply(sprite))
         pg.display.flip()
 
     def _update(self):
         '''Обновление спрайтов.'''
         self.all_sprites.update()
+        self.camera.update(self.player)
         
     def run(self):
         '''Создание игрового цикла.'''
