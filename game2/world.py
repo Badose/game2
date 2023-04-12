@@ -52,6 +52,7 @@ class Tile(pg.sprite.Sprite):
         self.rect.y = y * TILE_SIZE
 
 class Camera:
+    '''Конструктор камеры.'''
     def __init__(self, map_width, map_height):
         self.offset = (0, 0)
         self.map_width = map_width
@@ -60,10 +61,12 @@ class Camera:
 
 
     def aply(self, entity):
+        '''Движение камеры.'''
         return entity.rect.move(self.offset)
     
 
     def update(self, target):
+        '''Координаты камеры.'''
         x = -target.rect.x + WIDTH//2
         y =  -target.rect.y + HEIGHT//2
         x = min(x, 0) #левая граница
