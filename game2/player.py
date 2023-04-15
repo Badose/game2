@@ -11,6 +11,7 @@ class Player(pg.sprite.Sprite):
         self._layer = PLAYER_LAY
         super().__init__(game.all_sprites)
 
+        self.game = game
         sprite_sheet = Sprite_Sheet(sp_sheet_path, 2)
         self._load_images(sprite_sheet)
         self.image = self.walk_r[0]
@@ -42,7 +43,8 @@ class Player(pg.sprite.Sprite):
             self.velocity.x = 0
 
         self.velocity *= Player.speed
-        self.rect.center += self.velocity
+        if not self._will_collide():
+            self.rect.center += self.velocity
         
     def _load_images(self, sheet):
         self.walk_r = []
@@ -74,4 +76,10 @@ class Player(pg.sprite.Sprite):
             self.frame = (self.frame + 1) % self.cycle_len
             self.image = self.animation_cycle[self.frame]
 
+    def _will_collide(self):
+        target_rect = self.rect.move(self.velocity)
+        for i in self.game.walls:
+            if target_rect.colliderect(i.rect):
+                return True
+        return False
         

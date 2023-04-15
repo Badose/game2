@@ -16,9 +16,11 @@ class Game:
     def new(self):
         '''Добавление в главный код новых объектов, груп.'''
         self.all_sprites = pg.sprite.LayeredUpdates()
+        self.walls = pg.sprite.Group()
         self.map = Map(self, 'map/map.csv', 'map/rpg_tileset.png', 16)
         self.camera = Camera(self.map.width, self.map.height)
         self.player = Player(self, 'png/player_sheet.png', (100, 100))
+        
         
     
     def _events(self):
